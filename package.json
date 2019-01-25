@@ -1,0 +1,20 @@
+{
+  "name": "nuxt-course",
+  "version": "1.0.0",
+  "description": "My funkadelic Nuxt.js project",
+  "author": "Brice Laine",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
