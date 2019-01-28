@@ -1,32 +1,33 @@
 <template>
   <section class="posts-list">
     <PostPreview
-      id="1"
-      title="Hello there!"
-      previewText="This is my first Post"
-      thumbnail="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvJ5YlCZSUr3uPouAetbd7pe7BghuFt8WETSqibVsOUdSQzoV"
-    />
-    <PostPreview
-      id="2"
-      title="Hello there!"
-      previewText="This is my first Post"
-      thumbnail="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvJ5YlCZSUr3uPouAetbd7pe7BghuFt8WETSqibVsOUdSQzoV"
-    />
-    <PostPreview
-      id="3"
-      title="Hello there!"
-      previewText="This is my first Post"
-      thumbnail="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvJ5YlCZSUr3uPouAetbd7pe7BghuFt8WETSqibVsOUdSQzoV"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
+      :is-admin="isAdmin"
+      :thumbnail="post.thumbnail"
+      :title="post.title"
+      :previewText="post.previewText"
     />
   </section>
 </template>
 
 <script>
-import PostPreview from '@/components/Posts/PostPreview'
+import PostPreview from "@/components/Posts/PostPreview";
 export default {
-    components: {
-        PostPreview
+  components: {
+    PostPreview
+  },
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
+    posts: {
+      type: Array,
+      required: true
     }
+  }
 };
 </script>
 

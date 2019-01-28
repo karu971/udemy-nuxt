@@ -8,7 +8,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'WB Blog',
     meta: [{
         charset: 'utf-8'
       },
@@ -38,7 +38,13 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: '#fff',
+    height: '24px',
+    duration: 5000
+  },
+  loadingIndicator: {
+    name: 'circle',
+    color: '#fa923f'
   },
 
   /*

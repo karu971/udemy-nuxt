@@ -1,34 +1,43 @@
 <template>
   <div class="admin-page">
     <section class="new-post">
-      <button>Create post</button>
+      <AppButton @click="$router.push('/admin/new-post')">Create post</AppButton>
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
-      <PostList/>
+      <PostList isAdmin :posts="loadedPosts"/>
     </section>
   </div>
 </template>
 
 <script>
 import PostList from "@/components/Posts/PostList";
+import AppButton from "@/components/UI/AppButton";
 export default {
+  name: "AdminAuthPage",
+  layout: "admin",
   components: {
-    PostList
+    PostList,
+    AppButton
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    }
   }
 };
 </script>
 
 <style scoped>
 .admin-page {
-    padding: 20px;
+  padding: 20px;
 }
-.new-post{
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
+.new-post {
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
 }
-.existing-posts h1{
-    text-align: center
+.existing-posts h1 {
+  text-align: center;
 }
 </style>
