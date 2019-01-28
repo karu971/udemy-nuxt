@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const axios = require('axios')
 
 
 module.exports = {
@@ -38,6 +39,7 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
+    name: 'circle',
     color: '#fff',
     height: '24px',
     duration: 5000
@@ -55,12 +57,21 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~plugins/core-components.js',
+    '~plugins/date-filter.js'
+  ],
 
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  axios: {
+    basURL: process.env.BASE_URL || 'https://nuxt-blog-e5ae3.firebaseio.com/',
+    credentials: false
+  },
 
   /*
    ** Build configuration
@@ -71,6 +82,30 @@ module.exports = {
      */
     extend(config, ctx) {
 
+    }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-e5ae3.firebaseio.com/',
+    fbAPIKey: 'AIzaSyBqB8Dlu5VfGIJTMF-HF9wHE02raEub6gw'
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
+  serverMiddleware: [
+
+  ],
+  generate: {
+    routes: function () {
+      return axios
+        .get('https://nuxt-blog-e5ae3.firebaseio.com/posts.json')
+        .then(res => {
+          const routes = []
+          for (const key in res.data) {
+            routes.push('/posts/' + key)
+          }
+          return routes
+        })
     }
   }
 }

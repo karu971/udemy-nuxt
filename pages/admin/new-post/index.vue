@@ -13,6 +13,7 @@ export default {
   components: {
     AdminPostForm
   },
+  middleware: ['check-auth', 'auth'],
   methods: {
     onSubmitted(postData) {
       this.$store
